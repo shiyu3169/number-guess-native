@@ -11,7 +11,7 @@ import {
 import Card from "../components/Card";
 import colors from "../constants/colors";
 import Input from "../components/Input";
-import { reset } from "expo/build/AR";
+import NumberContainer from "../components/NumberContainer.js";
 
 const StartGameScreen = ({}) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -41,11 +41,18 @@ const StartGameScreen = ({}) => {
     setConfirmed(true);
     setSelectedNumber(chosenNumber);
     setEnteredValue("");
+    Keyboard.dismiss();
   };
 
   let confirmedOutput;
   if (confirmed) {
-    confirmedOutput = <Text>Chosen Number: {selectedNumber}</Text>;
+    confirmedOutput = (
+      <Card style={styles.summaryContainer}>
+        <Text>You Selected</Text>
+        <NumberContainer>{selectedNumber}</NumberContainer>
+        <Button title="START GAME" />
+      </Card>
+    );
   }
 
   return (
@@ -118,6 +125,9 @@ const styles = StyleSheet.create({
   input: {
     width: 50,
     textAlign: "center"
+  },
+  summaryContainer: {
+    marginTop: 20
   }
 });
 
