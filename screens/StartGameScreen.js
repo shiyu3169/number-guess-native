@@ -13,7 +13,7 @@ import colors from "../constants/colors";
 import Input from "../components/Input";
 import NumberContainer from "../components/NumberContainer.js";
 
-const StartGameScreen = ({}) => {
+const StartGameScreen = ({ onStartGame }) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState();
@@ -50,7 +50,10 @@ const StartGameScreen = ({}) => {
       <Card style={styles.summaryContainer}>
         <Text>You Selected</Text>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <Button title="START GAME" />
+        <Button
+          title="START GAME"
+          onPress={() => onStartGame(selectedNumber)}
+        />
       </Card>
     );
   }
@@ -127,7 +130,8 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   summaryContainer: {
-    marginTop: 20
+    marginTop: 20,
+    alignItems: "center"
   }
 });
 
